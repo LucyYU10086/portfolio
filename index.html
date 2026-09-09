@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Zhongyuan Yu — film and photographic work." />
+    <title>Zhongyuan Yu — Selected Works</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <main>
+      <section class="film-reel" id="films" aria-label="Selected films">
+        <header class="site-info">
+          <a class="name" href="#films"><span>Zhongyuan</span><span>Yu</span></a>
+          <a href="mailto:Lucyyu2007@outlook.com">Lucyyu2007@outlook.com</a>
+        </header>
+        <nav class="top-nav" aria-label="Portfolio sections">
+          <a href="#films">Films</a>
+          <a href="#stills">Image Gallery</a>
+          <a href="#resume">Resume</a>
+        </nav>
+        <button class="studio-trigger" id="openStudio" aria-haspopup="dialog">Add<br>work +</button>
+
+        <div class="stage" id="stage"></div>
+
+        <div class="reel-controls">
+          <div class="reel-projects">
+            <p class="preview-info" id="previewInfo" aria-live="polite"></p>
+            <div class="film-strip-wrap">
+              <button class="strip-arrow strip-arrow--left" id="scrollLeft" aria-label="Show previous projects">←</button>
+              <div class="film-strip" id="filmStrip" aria-label="Film projects"></div>
+              <button class="strip-arrow" id="scrollRight" aria-label="Show more projects">→</button>
+            </div>
+          </div>
+          <a class="to-stills" href="#stills" aria-label="View photography">↓</a>
+        </div>
+      </section>
+
+      <section class="stills" id="stills" aria-labelledby="stills-title">
+        <div class="stills-intro">
+          <p class="eyebrow">02 / Still images</p>
+          <h1 id="stills-title">Image<br><em>Gallery.</em></h1>
+          <p class="stills-copy">A continuing collection of photographs made between projects.</p>
+        </div>
+        <div class="photo-grid" id="photoGrid"></div>
+      </section>
+
+      <section class="resume" id="resume" aria-labelledby="resume-title">
+        <div class="resume-intro">
+          <p class="eyebrow">03 / Selected experience</p>
+          <h2 id="resume-title">Notes on<br><em>making.</em></h2>
+          <p>Competitions, collaborations, and moving-image work in progress.</p>
+        </div>
+        <div class="resume-list" id="resumeList"></div>
+        <footer>
+          <span>© <span id="year"></span> Zhongyuan Yu</span>
+          <a href="mailto:Lucyyu2007@outlook.com">Get in touch ↗</a>
+        </footer>
+      </section>
+    </main>
+
+    <dialog class="player-modal" id="playerModal" aria-label="Film player">
+      <button class="close-player" id="closePlayer" aria-label="Close player">×</button>
+      <div class="player-frame">
+        <video id="fullVideo" controls playsinline></video>
+        <aside class="video-detail">
+          <p id="playerTitle"></p>
+          <p id="playerDescription"></p>
+        </aside>
+      </div>
+    </dialog>
+
+    <dialog class="photo-modal" id="photoModal" aria-label="Photograph viewer">
+      <button class="close-player" id="closePhoto" aria-label="Close photograph">×</button>
+      <img id="fullPhoto" alt="" />
+    </dialog>
+
+    <dialog class="studio-modal" id="studioModal" aria-label="Add portfolio work">
+      <button class="close-player" id="closeStudio" aria-label="Close add-work panel">×</button>
+      <p class="studio-kicker">Portfolio studio / saved in this browser</p>
+      <h2>Add work</h2>
+      <div class="studio-forms">
+        <form id="videoForm">
+          <h3>Add a film</h3>
+          <label>Film title<input name="title" required placeholder="Film title" /></label>
+          <label>Year<input name="year" required placeholder="2026" /></label>
+          <label>Runtime<input name="runtime" required placeholder="07:00" /></label>
+          <label>Video URL (.mp4)<input name="video" required type="url" placeholder="https://…/film.mp4" /></label>
+          <label>Poster image URL<input name="poster" required type="url" placeholder="https://…/poster.jpg" /></label>
+          <label>Description<textarea name="description" required placeholder="A short description of the film."></textarea></label>
+          <button type="submit">Add film</button>
+        </form>
+        <form id="photoForm">
+          <h3>Add a photo</h3>
+          <label>Photo URL<input name="src" required type="url" placeholder="https://…/photo.jpg" /></label>
+          <label>Private label<input name="label" required placeholder="Untitled photograph" /></label>
+          <button type="submit">Add photo</button>
+        </form>
+        <form class="resume-form" id="resumeForm">
+          <h3>Add a resume entry</h3>
+          <label>Year<input name="year" required placeholder="2026" /></label>
+          <label>Type<input name="type" required placeholder="Competition / Film" /></label>
+          <label>Title<input name="title" required placeholder="Project or award title" /></label>
+          <label>Description<textarea name="description" required placeholder="Your role, result, or contribution."></textarea></label>
+          <button type="submit">Add entry</button>
+        </form>
+      </div>
+    </dialog>
+
+    <template id="projectTemplate">
+      <article class="project-card">
+        <video class="project-preview" muted loop playsinline preload="metadata"></video>
+        <div class="project-poster"></div>
+        <div class="project-meta"><span class="project-number"></span><span class="project-title"></span><span class="project-runtime"></span></div>
+      </article>
+    </template>
+
+    <template id="photoTemplate">
+      <figure class="photo-item"><img loading="lazy" alt="" /><figcaption></figcaption></figure>
+    </template>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
